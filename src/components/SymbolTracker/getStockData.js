@@ -3,7 +3,10 @@ const TIME_GRANULARITY = '5min';
 const TIME_SERIES = `Time Series (${TIME_GRANULARITY})`;
 const TIME_POINT = {
     OPEN: '1. open',
-    CLOSE: '',
+    HIGH: '2. high',
+    LOW: '3. low',
+    CLOSE: '4. close',
+    VOLUME: '5. volume',
 };
 const SELECTED_TIME = TIME_POINT.OPEN;
 
