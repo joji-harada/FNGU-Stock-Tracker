@@ -1,14 +1,22 @@
 import React from 'react';
 import Chart from './components/SymbolTracker';
 
-const symbol = ["FNGU", "MSFT", "AMZN"]
+const symbol = [
+  "AAPL", "AMZN", "BABA",
+  "BIDU", "TWTR", "GOOGL",
+  "NFLX", "NVDA", "TSLA",
+  "FB"
+]
+const charts = [];
+for(let stock of symbol){
+  charts.push(<Chart symbol={stock}/>)
+}
 
 function App() {
   return (
     <div>
-      <Chart 
-        symbol={symbol[0]}
-      />
+      <h1>FNGU Tracker</h1>
+      {charts}
     </div>
   );
 }

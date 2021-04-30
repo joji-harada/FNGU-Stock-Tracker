@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import getStockData from './getStockData'
+import getStockData from './getStockData';
+import Plot from 'react-plotly.js';
 
 const Chart = ({ symbol }) => {
     const [stockData, setStockData] = useState({});
@@ -10,11 +11,18 @@ const Chart = ({ symbol }) => {
 
     return(
         <div>
-            <h1>FNGU Tracker</h1>
-            <h2>X Values:</h2>
-            <p>{ stockData.xVals }</p>
-            <h2>Y Values:</h2>
-            <p>{ stockData.yVals }</p>
+            <Plot 
+                data = {[
+                    {
+                        x: stockData.xVals,
+                        y: stockData.yVals,
+                        type: 'scatter',
+                        mode: 'lines+markers',
+                        marker: {color: 'red'},
+                    },
+                ]}
+                layout = {{width: 720, height: 440, title: `${symbol}`}}
+            />
         </div>
     );
 };
