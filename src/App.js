@@ -12,7 +12,7 @@ function App() {
   return (
     <div>
       <h1>FNGU Tracker</h1>
-      {/* <Chart symbol='FNGU'/> */}
+      <Chart symbol='FNGU' />
       {
         symbols.map((symbol, index) => {
           return <Chart key={index} symbol={symbol} />

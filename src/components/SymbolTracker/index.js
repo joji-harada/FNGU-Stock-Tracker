@@ -5,10 +5,13 @@ import Plot from 'react-plotly.js';
 const Chart = ({ symbol }) => {
     const [stockData, setStockData] = useState({});
 
+    //logic to dictate green or red
+    //using data.changeOverTime
+    
+
     useEffect(async () => {
         setStockData(await fetchStockData(symbol));
     }, []);
-
 
     return(
         <div>
@@ -18,11 +21,14 @@ const Chart = ({ symbol }) => {
                         x: stockData.xVals,
                         y: stockData.yVals,
                         type: 'scatter',
-                        mode: 'lines+markers',
-                        marker: {color: 'red'},
+                        mode: 'lines',
+                        marker: {color: `${stockData.color}`},
+                        connectgaps: true,
+                        xaxis: { title: 'Time' },
+                        yaxis: { title: 'Price' },
                     },
                 ]}
-                layout = {{width: 1000, height: 400, title: `${symbol}`}}
+                layout = {{width: 700, height: 400, title: `${symbol}`}}
             />
         </div>
     );
