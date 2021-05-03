@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import getStockData from './getStockData';
+import fetchStockData from './fetchStockData';
 import Plot from 'react-plotly.js';
 
 const Chart = ({ symbol }) => {
     const [stockData, setStockData] = useState({});
 
     useEffect(async () => {
-        setStockData(await getStockData(symbol));
+        setStockData(await fetchStockData(symbol));
     }, []);
+
 
     return(
         <div>
@@ -21,7 +22,7 @@ const Chart = ({ symbol }) => {
                         marker: {color: 'red'},
                     },
                 ]}
-                layout = {{width: 720, height: 440, title: `${symbol}`}}
+                layout = {{width: 1000, height: 400, title: `${symbol}`}}
             />
         </div>
     );
