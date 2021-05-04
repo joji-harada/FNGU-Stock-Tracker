@@ -5,8 +5,12 @@ import Plot from 'react-plotly.js';
 const Chart = ({ symbol }) => {
     const [stockData, setStockData] = useState({});
 
-    useEffect(async () => {
-        setStockData(await fetchStockData(symbol));
+    useEffect(() => {
+        let fetchData = async () => {
+            setStockData(await fetchStockData(symbol));
+        }
+        fetchData();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     return(
