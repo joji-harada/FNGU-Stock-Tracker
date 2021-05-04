@@ -4,6 +4,13 @@ import Plot from 'react-plotly.js';
 
 const Chart = ({ symbol }) => {
     const [stockData, setStockData] = useState({});
+    const size = (symbol) => {
+        if(symbol === 'FNGU'){
+            return 1000;
+        } else {
+            return 325;
+        }
+    }
 
     useEffect(() => {
         let fetchData = async () => {
@@ -29,7 +36,7 @@ const Chart = ({ symbol }) => {
                 ]}
                 layout = {
                     {
-                        width: 700,
+                        width: `${size(symbol)}`,
                         height: 400,
                         title: `${symbol}`,
                         xaxis: { title: 'Time' },

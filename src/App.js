@@ -11,13 +11,17 @@ const symbols = [
 function App() {
   return (
     <div>
-      <h1>FNGU Tracker</h1>
-      <Chart symbol='FNGU' />
-      {
-        symbols.map((symbol, index) => {
-          return <Chart key={index} symbol={symbol} />
-        })
-      }
+      <div className='ui container'>
+        <h1>FNGU Tracker</h1>
+        <Chart symbol='FNGU' />
+        <div className="ui grid">
+          {
+            symbols.map((symbol, index) => {
+              return <Chart className='five wide column' key={index} symbol={symbol} />
+            })
+          }
+        </div>
+      </div>
     </div>
   );
 }
