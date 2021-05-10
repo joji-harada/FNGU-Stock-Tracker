@@ -1,46 +1,48 @@
-import React, { useState, useEffect } from 'react';
-import fetchStockData from './fetchStockData';
+import React from 'react';
 import Plot from 'react-plotly.js';
 
-const Chart = ({ symbol }) => {
-    const [stockData, setStockData] = useState({});
-    const size = (symbol) => {
-        if(symbol === 'FNGU'){
-            return 1000;
-        } else {
-            return 325;
-        }
-    }
-
-    useEffect(() => {
-        let fetchData = async () => {
-            setStockData(await fetchStockData(symbol));
-        }
-        fetchData();
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
-
+const Chart = ({ symbol, className, data }) => {
     return(
-        <div>
+        <div className={className}>
             <Plot 
                 data = {[
                     {
-                        x: stockData.xVals,
-                        y: stockData.yVals,
+                        x: data.xVals,
+                        y: data.yVals,
                         type: 'scatter',
                         mode: 'lines',
-                        marker: {color: `${stockData.color}`},
+                        marker: { color: `${data.color}` },
                         connectgaps: true,
-                        
                     },
                 ]}
                 layout = {
                     {
-                        width: `${size(symbol)}`,
-                        height: 400,
+                        autosize: true,
                         title: `${symbol}`,
-                        xaxis: { title: 'Time' },
-                        yaxis: { title: 'Price' },
+                        xaxis: { 
+                            gridcolor: '2b2b2b',
+                            title: 'EST'
+                        },
+                        yaxis: {
+                            gridcolor: '2b2b2b',
+                        },
+                        margin: {
+                            l: 40,
+                            r: 40,
+                            b: 100,
+                            t: 100,
+                            pad: 4
+                        },
+                        font: {color: 'green'},
+                        paper_bgcolor: '#1c1c1c',
+                        plot_bgcolor: '#1c1c1c',
+                    }
+                }
+                useResizeHandler = {true}
+                style={
+                    {
+                        width: '100%',
+                        height: '100%'
                     }
                 }
             />
