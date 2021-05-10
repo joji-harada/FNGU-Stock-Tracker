@@ -12,12 +12,15 @@ Investors of an ETF typically like to see the performance of the individual secu
 
 This app compiles current daily data from the basket of securities of a given ETF (currently working solely for FNGU) and displays the charts on a single page. It also renders the "top mover" to the top of the page.
 
-### install dependencies
+# Setup
 
+### `Install dependencies`
+```bash
 npm i
+```
 
-### `npm start`
-
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.
+### `Run application`
+```bash
+npm start
+```
+Command will open [http://localhost:3000](http://localhost:3000) in the browser.
