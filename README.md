@@ -1,4 +1,4 @@
-![screenshot of app](https://github.com/joji-harada/FNGU-Stock-Tracker/FNGU-Tracker.png?raw=true)
+![screenshot of app](https://github.com/joji-harada/FNGU-Stock-Tracker/blob/master/FNGU-Tracker.png)
 # FNGU Tracker
 
 This project aims to solve a common problem for investors with stake in an Exchange Trade Fund (ETF).
