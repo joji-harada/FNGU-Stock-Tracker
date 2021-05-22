@@ -22,7 +22,7 @@ class App extends React.Component {
   render() {
     const {stockData, etfSymbol} = this.state;
     const sortedSymbols = sortTopMover(stockData);
-    console.log('data: ', stockData, '\nETF: ',  etfSymbol, '\nSorted Symbols: ', sortedSymbols);
+
     return (
       <div>
         <div className='ui container'>
@@ -34,7 +34,7 @@ class App extends React.Component {
                 const {isTopMover} = symbolData;
                 const chartClass = symbol === etfSymbol || isTopMover
                   ? 'wide-chart'
-                  : 'five wide column chart'; 
+                  : 'chart'; 
 
                 const topMoverText = isTopMover ? 'Top Mover: ' : '';
 

@@ -12,3 +12,9 @@ body{
   width: 100%;
   max-width: 1025px;
 }
+
+@media (max-width: 800px) {
+  .chart {
+    width: 100%;
+  }
+}

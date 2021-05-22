@@ -104,6 +104,5 @@ export const sortTopMover = (stockData) => {
 }
 
 function getAverage(total, entries){
-    console.log('average: ', total / entries);
     return total / entries;
 }
