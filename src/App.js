@@ -8,7 +8,6 @@ class App extends React.Component {
     super(props);
     this.state = {
       stockData: {},
-      symbols: [],
       etfSymbol: '',
     }
   }
@@ -17,26 +16,37 @@ class App extends React.Component {
     const stockData = await getAllStockData();
     const symbols = Object.keys(stockData);
     const etfSymbol = symbols[0];
-    this.setState({stockData, symbols, etfSymbol});
+    this.setState({stockData, etfSymbol});
   }
 
   render() {
-    const {symbols, stockData, etfSymbol} = this.state;
-    const sortedSymbols = sortTopMover(stockData, symbols);
+    const {stockData, etfSymbol} = this.state;
+    const sortedSymbols = sortTopMover(stockData);
     console.log('data: ', stockData, '\nETF: ',  etfSymbol, '\nSorted Symbols: ', sortedSymbols);
     return (
       <div>
         <div className='ui container'>
           <h1>{etfSymbol} Tracker</h1>
           <div className="ui grid">  
-            {/* <Chart className="wide-chart" symbol={etfSymbol} data={stockData[etfSymbol]} /> */}
             {
               sortedSymbols.map((symbol, index) => {
-                const chartClass = symbol === etfSymbol || stockData[symbol].isTopMover
+                const symbolData = stockData[symbol];
+                const {isTopMover} = symbolData;
+                const chartClass = symbol === etfSymbol || isTopMover
                   ? 'wide-chart'
                   : 'five wide column chart'; 
 
-                return <Chart className={`${chartClass}`} key={index} symbol={symbol} data={stockData[symbol]} />
+                const topMoverText = isTopMover ? 'Top Mover: ' : '';
+
+                return (
+                  <Chart
+                    topMoverText={`${topMoverText}`}
+                    className={`${chartClass}`}
+                    key={index}
+                    symbol={symbol}
+                    data={symbolData}
+                  />
+                );
               })
             }
           </div>

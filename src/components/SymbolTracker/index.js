@@ -1,7 +1,7 @@
 import React from 'react';
 import Plot from 'react-plotly.js';
 
-const Chart = ({ symbol, className, data }) => {
+const Chart = ({ symbol, className, data, topMoverText }) => {
     return(
         <div className={className}>
             <Plot 
@@ -18,7 +18,7 @@ const Chart = ({ symbol, className, data }) => {
                 layout = {
                     {
                         autosize: true,
-                        title: `${symbol}`,
+                        title: `${topMoverText}${symbol}`,
                         xaxis: { 
                             gridcolor: '2b2b2b',
                             title: 'EST'

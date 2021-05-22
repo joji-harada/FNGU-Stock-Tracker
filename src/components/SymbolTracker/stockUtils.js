@@ -43,9 +43,9 @@ async function fetchStockData(symbol) {
         }
     })
 
-    stockData.changeOverTime = changeOverTime;
+    stockData.changeOverTime = getAverage(changeOverTime, stockData.yVals.length);
 
-    if(changeOverTime >= 0){
+    if(stockData.yVals[stockData.xVals.length - 1] >= stockData.yVals[0]){
         stockData.color = 'green';
     } else {
         stockData.color = '#c42121';
@@ -66,23 +66,26 @@ const getToday = () => {
     return yyyy + mm + dd;
 }
 
-const getTopMover = (allStockData) => { //utilized in getAllStockData
+const getTopMover = (allStockData) => {
     let keys = Object.keys(allStockData);
     let tempTopChange = Math.abs(allStockData[keys[0]].changeOverTime);
-    allStockData[keys[0]].isTopMover = true;
+    let curTopMoverSymbolData = {};
 
     for (let i = 1; i < keys.length; i++) {
-        if (tempTopChange < Math.abs(allStockData[keys[i]].changeOverTime)) {
-        tempTopChange = Math.abs(allStockData[keys[i]].changeOverTime);
-        allStockData[keys[i - 1]].isTopMover = false;
-        allStockData[keys[i]].isTopMover = true;
+        const curData = allStockData[keys[i]];
+        if (tempTopChange < Math.abs(curData.changeOverTime)) {
+        tempTopChange = Math.abs(curData.changeOverTime);
+        curTopMoverSymbolData = curData;
         }
     }
+
+    curTopMoverSymbolData.isTopMover = true;
 
     return allStockData;
 }
 
-export const sortTopMover = (stockData, symbols) => {
+export const sortTopMover = (stockData) => {
+    const symbols = Object.keys(stockData);
     let res = [];
     for(let i = 1; i < symbols.length; i++){
         if(stockData[symbols[i]].isTopMover === true){
@@ -90,7 +93,17 @@ export const sortTopMover = (stockData, symbols) => {
         } else {
         res.push(symbols[i]);
         }
+
+        // Add fngu as first item after list has been fully constructed
+        if(i === symbols.length - 1) {
+            res.unshift(symbols[0]);
+        }
     }
 
   return res;
+}
+
+function getAverage(total, entries){
+    console.log('average: ', total / entries);
+    return total / entries;
 }
