@@ -26,7 +26,7 @@ class App extends React.Component {
     return (
       <div>
         <div className='ui container'>
-          <h1>{etfSymbol} Tracker</h1>
+          <h1 className='mainHeadline'>{etfSymbol} Tracker</h1>
           <div className="ui grid">  
             {
               sortedSymbols.map((symbol, index) => {

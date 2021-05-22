@@ -45,7 +45,9 @@ async function fetchStockData(symbol) {
 
     stockData.changeOverTime = getAverage(changeOverTime, stockData.yVals.length);
 
-    if(stockData.yVals[stockData.xVals.length - 1] >= stockData.yVals[0]){
+    const yVals = stockData.yVals.filter(price => price !== null);
+
+    if(yVals[stockData.xVals.length - 1] >= yVals[0]){
         stockData.color = 'green';
     } else {
         stockData.color = '#c42121';
