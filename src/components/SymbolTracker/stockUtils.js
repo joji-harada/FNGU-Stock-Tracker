@@ -47,7 +47,9 @@ async function fetchStockData(symbol) {
 
     const yVals = stockData.yVals.filter(price => price !== null);
 
-    if(yVals[stockData.xVals.length - 1] >= yVals[0]){
+    const firstYVal = yVals[0];
+    const lastYVal = yVals[yVals.length - 1];
+    if(lastYVal >= firstYVal){
         stockData.color = 'green';
     } else {
         stockData.color = '#c42121';
@@ -62,9 +64,18 @@ function getApiEndpoint(symbol, today) {
 
 const getToday = () => {
     let date = new Date();
+    //setting date to previous Friday
+    //if current date is weekend
+    if(date.getDay() === 6){ //if it's sat and numeral is greater than 1
+        date.setDate(date.getDate() - 1);
+    } else if(date.getDay() === 0){ //if it's sun and numeral is greater than 2
+        date.setDate(date.getDate() - 2);
+    }
+
     let dd = String(date.getDate()).padStart(2, '0');
     let mm = String(date.getMonth() + 1).padStart(2, '0');
     let yyyy = date.getFullYear();
+
     return yyyy + mm + dd;
 }
 

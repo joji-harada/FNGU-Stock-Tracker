@@ -3,8 +3,9 @@ body{
   color: white;
 }
 .mainHeadline {
-  margin-top: 50px;
+  margin-top: 150px;
 }
+
 .chart {
   width: 32%;
   max-width: 350px;
