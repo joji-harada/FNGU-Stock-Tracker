@@ -102,9 +102,9 @@ export const sortTopMover = (stockData) => {
     let res = [];
     for(let i = 1; i < symbols.length; i++){
         if(stockData[symbols[i]].isTopMover === true){
-        res.unshift(symbols[i]);
+            res.unshift(symbols[i]);
         } else {
-        res.push(symbols[i]);
+            res.push(symbols[i]);
         }
 
         // Add fngu as first item after list has been fully constructed
