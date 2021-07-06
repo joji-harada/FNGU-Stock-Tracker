@@ -22,7 +22,7 @@ async function fetchStockData(symbol) {
         changeOverTime: 0,
         isTopMover: false,
     };
-    const today = getToday(); 
+    const today = getToday();
     const endpoint = getApiEndpoint(symbol, today);
     const response = await fetch(endpoint);
     const data = await response.json();
@@ -64,11 +64,10 @@ function getApiEndpoint(symbol, today) {
 
 const getToday = () => {
     let date = new Date();
-    //setting date to previous Friday
-    //if current date is weekend
-    if(date.getDay() === 6){ //if it's sat and numeral is greater than 1
+    //setting date to previous Friday if current date is weekend
+    if(date.getDay() === 6){ //if it's sat
         date.setDate(date.getDate() - 1);
-    } else if(date.getDay() === 0){ //if it's sun and numeral is greater than 2
+    } else if(date.getDay() === 0){ //if it's sun
         date.setDate(date.getDate() - 2);
     }
 

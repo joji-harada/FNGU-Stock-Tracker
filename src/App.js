@@ -12,6 +12,19 @@ class App extends React.Component {
     }
   }
 
+  getDate(){
+    let date = new Date();
+    //setting date to previous Friday if current date is weekend
+    if(date.getDay() === 6){ //if it's sat
+        date.setDate(date.getDate() - 1);
+    } else if(date.getDay() === 0){ //if it's sun
+        date.setDate(date.getDate() - 2);
+    }
+
+    date = date.toLocaleString();
+    return date.split(',')[0]
+  }
+
   async componentDidMount() {
     const stockData = await getAllStockData();
     const symbols = Object.keys(stockData);
@@ -26,9 +39,7 @@ class App extends React.Component {
     return (
       <div>
         <div className='ui container'>
-          <div>
-            <h1 className='mainHeadline'>{etfSymbol} Tracker</h1>
-          </div>
+          <h1 className='mainHeadline'>{etfSymbol} Tracker - Dataset for {this.getDate()}</h1>
           <div className="ui grid">  
             {
               sortedSymbols.map((symbol, index) => {
