@@ -25,6 +25,10 @@ This application also features custom written code that filters and sorts the da
 npm i
 ```
 
+### `Environment Variable`
+
+Create .env file at project root. Name the variable REACT_APP_STOCK_KEY and assign it your IEX Cloud API key. Free key available at https://iexcloud.io/
+
 ### `Run application`
 ```bash
 npm start
