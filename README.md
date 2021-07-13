@@ -30,7 +30,12 @@ npm i
 Create .env file at project root. Name the variable REACT_APP_STOCK_KEY and assign it your IEX Cloud API key. Free key available at https://iexcloud.io/
 
 ### `Run application`
+with npm
 ```bash
 npm start
+```
+or with yarn
+```bash
+yarn start
 ```
 Command will open [http://localhost:3000](http://localhost:3000) in the browser.
